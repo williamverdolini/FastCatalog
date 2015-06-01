@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQL2MongoDB", "SQL2MongoDB\SQL2MongoDB.csproj", "{A45FAC4F-3D8A-4EF9-B0FC-CABB9C936102}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQL2Elastic", "SQL2Elastic\SQL2Elastic.csproj", "{5088EFE1-C06B-4E2D-BC62-8B70D9D8A84B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLMigration", "SQLMigration\SQLMigration.csproj", "{2169B6CF-FF4B-4296-B6FA-DF291BCCAFF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLCommon", "SQLCommon\SQLCommon.csproj", "{7707C32E-8A95-4561-A02E-552AA98721EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A45FAC4F-3D8A-4EF9-B0FC-CABB9C936102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A45FAC4F-3D8A-4EF9-B0FC-CABB9C936102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A45FAC4F-3D8A-4EF9-B0FC-CABB9C936102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A45FAC4F-3D8A-4EF9-B0FC-CABB9C936102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5088EFE1-C06B-4E2D-BC62-8B70D9D8A84B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5088EFE1-C06B-4E2D-BC62-8B70D9D8A84B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5088EFE1-C06B-4E2D-BC62-8B70D9D8A84B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5088EFE1-C06B-4E2D-BC62-8B70D9D8A84B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2169B6CF-FF4B-4296-B6FA-DF291BCCAFF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2169B6CF-FF4B-4296-B6FA-DF291BCCAFF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2169B6CF-FF4B-4296-B6FA-DF291BCCAFF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2169B6CF-FF4B-4296-B6FA-DF291BCCAFF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7707C32E-8A95-4561-A02E-552AA98721EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7707C32E-8A95-4561-A02E-552AA98721EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7707C32E-8A95-4561-A02E-552AA98721EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7707C32E-8A95-4561-A02E-552AA98721EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
