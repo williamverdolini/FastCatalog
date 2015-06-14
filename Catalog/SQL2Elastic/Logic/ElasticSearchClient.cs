@@ -11,9 +11,11 @@ namespace SQL2Elastic.Logic
     {
         private static ElasticClient client;
         private IList<ESProduct> products;
+        private Random rnd;
 
         public IDbClient Initialize()
         {
+            rnd = new Random();
             // Elastich Search Settings
             var settings = new ConnectionSettings(
                                     uri: new Uri(Resources.ES_NodeUri),
@@ -23,6 +25,7 @@ namespace SQL2Elastic.Logic
             client = new ElasticClient(settings);
             products = new List<ESProduct>();
             CreateMapping();
+
             return this;
         }
 
@@ -33,6 +36,8 @@ namespace SQL2Elastic.Logic
                 Id = Guid.NewGuid(),
                 Code = dbProduct.Data.Code,
                 Description = dbProduct.Data.Description,
+                IdCategory = dbProduct.Data.IdCategory,
+                Price = Math.Round(10 + rnd.NextDouble() * (1000 - 10), 2),
                 Synonims = dbProduct.Synonims.ToStringList(),
                 Attributes = dbProduct.Attributes.ToProductAttributes()
             };

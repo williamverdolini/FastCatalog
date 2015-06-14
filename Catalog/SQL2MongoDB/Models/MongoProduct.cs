@@ -9,6 +9,7 @@ namespace SQL2MongoDB.Models
         public string Code { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
+        public long IdCategory { get; set; }
         public IList<string> Synonims { get; set; }
         public IList<ProductAttribute> Attributes { get; set; }
     }

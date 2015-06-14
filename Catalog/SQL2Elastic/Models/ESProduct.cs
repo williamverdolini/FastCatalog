@@ -15,6 +15,8 @@ namespace SQL2Elastic.Models
         [ElasticProperty(Index = FieldIndexOption.NotAnalyzed)]
         public double Price { get; set; }
         [ElasticProperty(Index = FieldIndexOption.NotAnalyzed)]
+        public long IdCategory { get; set; }
+        [ElasticProperty(Index = FieldIndexOption.NotAnalyzed)]
         public IList<string> Synonims { get; set; }
         [ElasticProperty(Type = FieldType.Nested)]
         public IList<ProductAttribute> Attributes { get; set; }

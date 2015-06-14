@@ -16,9 +16,11 @@ namespace SQL2MongoDB.Logic
         private static IMongoDatabase database;
         private IList<BsonDocument> products;
         private IList<MongoProduct> _products = new List<MongoProduct>();
+        private Random rnd;
 
         public IDbClient Initialize()
         {
+            rnd = new Random();
             client = new MongoClient();
             products = new List<BsonDocument>();
             database = client.GetDatabase(Resources.MongoDB);
@@ -32,6 +34,8 @@ namespace SQL2MongoDB.Logic
                 //Id = Guid.NewGuid().ToString(),
                 Code = dbProduct.Data.Code,
                 Description = dbProduct.Data.Description,
+                IdCategory = dbProduct.Data.IdCategory,
+                Price = Math.Round(10 + rnd.NextDouble() * (1000 - 10),2),
                 Synonims = dbProduct.Synonims.ToStringList(),
                 Attributes = dbProduct.Attributes.ToProductAttributes()
             };

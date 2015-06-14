@@ -18,6 +18,7 @@ namespace SQLCommon.Models
         public long IDProdotto { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
+        public long IdCategory { get; set; }
     }
 
     public class SQLAttributes

@@ -127,33 +127,19 @@
     <value>select 
 	'&lt;Product&gt;'+
 	-- Raw Product data
-	(select PC1.IDProdotto,codpro as 'Code', DESCPRO as 'Description' from eice.ProdottiCodificati PC1 where PC1.IDProdotto=PC.IDProdotto for XML path('Data')) +
+	(select PC1.IDProdotto,codpro as 'Code', DESCPRO as 'Description', IDCategoria as 'IdCategory' from eice.ProdottiCodificati PC1 
+		left outer join eice.ProdottiCategorie PCa on PCa.IDProdotto = PC1.IDProdotto
+		where PC1.IDProdotto=PC.IDProdotto for XML path('Data')) +
 	-- Product's attributes
 	(select P.Description as 'Key', RTRIM(PV.Description) as 'Value' 
 		from eice.ProprietaSintesi PS
 		inner join eice.ProprietaValori PV on PV.IDValore = PS.IDValore
 		inner join eice.Proprieta P on P.IDProprieta = PV.IDProprieta
 		where PS.IDProdotto=PC.IDProdotto AND ISNULL(PV.Description,'')&lt;&gt;'' for XML path('Attribute')) +
-	-- Product's Catalog
+	-- Product's Synonims
 	(select PE.CODART as 'Code' from eice.ProdottiEsterni PE where IDProdotto = PC.IDProdotto for XML raw('Synonim')) +
 	'&lt;/Product&gt;'
 	from eice.ProdottiCodificati PC</value>
-    <comment>Query per l'estrazione dei prodotti da SQL Server. Utilizza nested-query in formato XML per comporre l'intera struttura del prodotto</comment>
-  </data>
-  <data name="oldQuery" xml:space="preserve">
-    <value>select
-	'&lt;Product&gt;'+
-	-- Raw Product data
-	(select PC1.IDProdotto,codpro as 'Code', DESCPRO as 'Description' from eice.ProdottiCodificati PC1 where PC1.IDProdotto=PC.IDProdotto for XML path('Data')) +
-	-- Product's attributes
-	(select P.Description as 'Key', PV.Description as 'Value' 
-		from eice.ProprietaSintesi PS
-		inner join eice.ProprietaValori PV on PV.IDValore = PS.IDValore
-		inner join eice.Proprieta P on P.IDProprieta = PV.IDProprieta
-		where PS.IDProdotto=PC.IDProdotto for XML path('Attribute')) +
-	-- Product's Catalog
-	(select PE.CODART as 'Code' from eice.ProdottiEsterni PE where IDProdotto = PC.IDProdotto for XML raw('Synonim')) +
-	'&lt;/Product&gt;'
-	from eice.ProdottiCodificati PC</value>
+    <comment>Query used to extract products data from SQL Server. It uses nested-query in XML format to compose the whole structure of product.</comment>
   </data>
 </root>

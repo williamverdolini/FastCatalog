@@ -82,35 +82,17 @@ namespace SQLMigration {
         ///   Looks up a localized string similar to select 
         ///	&apos;&lt;Product&gt;&apos;+
         ///	-- Raw Product data
-        ///	(select PC1.IDProdotto,codpro as &apos;Code&apos;, DESCPRO as &apos;Description&apos; from eice.ProdottiCodificati PC1 where PC1.IDProdotto=PC.IDProdotto for XML path(&apos;Data&apos;)) +
+        ///	(select PC1.IDProdotto,codpro as &apos;Code&apos;, DESCPRO as &apos;Description&apos;, IDCategoria as &apos;IdCategory&apos; from eice.ProdottiCodificati PC1 
+        ///		left outer join eice.ProdottiCategorie PCa on PCa.IDProdotto = PC1.IDProdotto
+        ///		where PC1.IDProdotto=PC.IDProdotto for XML path(&apos;Data&apos;)) +
         ///	-- Product&apos;s attributes
         ///	(select P.Description as &apos;Key&apos;, RTRIM(PV.Description) as &apos;Value&apos; 
         ///		from eice.ProprietaSintesi PS
-        ///		inner join eice.ProprietaValori PV on PV.IDValore = PS.IDValore
-        ///		inner join eice.Proprieta P on P.IDProprieta = PV.IDProprieta
-        ///		where PS.IDProdotto=PC.IDProdotto AND ISNULL( [rest of string was truncated]&quot;;.
+        ///		inner join eice.ProprietaValori PV on PV.IDValore = PS.IDValore [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string InitialPopulate {
             get {
                 return ResourceManager.GetString("InitialPopulate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to select
-        ///	&apos;&lt;Product&gt;&apos;+
-        ///	-- Raw Product data
-        ///	(select PC1.IDProdotto,codpro as &apos;Code&apos;, DESCPRO as &apos;Description&apos; from eice.ProdottiCodificati PC1 where PC1.IDProdotto=PC.IDProdotto for XML path(&apos;Data&apos;)) +
-        ///	-- Product&apos;s attributes
-        ///	(select P.Description as &apos;Key&apos;, PV.Description as &apos;Value&apos; 
-        ///		from eice.ProprietaSintesi PS
-        ///		inner join eice.ProprietaValori PV on PV.IDValore = PS.IDValore
-        ///		inner join eice.Proprieta P on P.IDProprieta = PV.IDProprieta
-        ///		where PS.IDProdotto=PC.IDProdotto for XML path(&apos;Attri [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string oldQuery {
-            get {
-                return ResourceManager.GetString("oldQuery", resourceCulture);
             }
         }
     }
