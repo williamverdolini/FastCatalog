@@ -43,14 +43,16 @@ namespace SQLMigration
         {
             new Migrator<MongoDbClient>()
                 .Initialize()
-                .Execute();
+                .Execute()
+                .PostMigration();
         }
 
         static private void SQL2Elastic()
         {
             new Migrator<ElasticSearchClient>()
                 .Initialize()
-                .Execute();
+                .Execute()
+                .PostMigration();
         }
 
         static private void Help()

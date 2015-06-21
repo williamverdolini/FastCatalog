@@ -9,13 +9,16 @@ namespace SQL2MongoDB.Logic
         public static List<ProductAttribute> ToProductAttributes(this List<SQLAttribute> attributes)
         {
             List<ProductAttribute> attrs = new List<ProductAttribute>();
-            foreach (var a in attributes)
+            if (attributes != null)
             {
-                attrs.Add(new ProductAttribute
+                foreach (var a in attributes)
                 {
-                    Key = a.Key,
-                    Value = a.Value
-                });
+                    attrs.Add(new ProductAttribute
+                    {
+                        Key = a.Key,
+                        Value = a.Value
+                    });
+                }
             }
             return attrs;
         }

@@ -9,7 +9,7 @@ namespace SQL2Elastic.Logic
 {
     public class ElasticSearchClient : IDbClient
     {
-        private static ElasticClient client;
+        private ElasticClient client;
         private IList<ESProduct> products;
         private Random rnd;
 
@@ -31,6 +31,7 @@ namespace SQL2Elastic.Logic
 
         public void Save(SQLProduct dbProduct)
         {
+            Contract.Requires<ArgumentNullException>(dbProduct != null, "dbProduct");
             var product = new ESProduct
             {
                 Id = Guid.NewGuid(),

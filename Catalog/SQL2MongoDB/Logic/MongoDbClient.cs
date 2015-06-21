@@ -12,10 +12,9 @@ namespace SQL2MongoDB.Logic
 {
     public class MongoDbClient : IDbClient
     {
-        private static IMongoClient client;
-        private static IMongoDatabase database;
+        private IMongoClient client;
+        private IMongoDatabase database;
         private IList<BsonDocument> products;
-        private IList<MongoProduct> _products = new List<MongoProduct>();
         private Random rnd;
 
         public IDbClient Initialize()
@@ -29,6 +28,7 @@ namespace SQL2MongoDB.Logic
 
         public void Save(SQLProduct dbProduct)
         {
+            Contract.Requires<ArgumentNullException>(dbProduct != null, "dbProduct");
             var product = new MongoProduct
             {
                 //Id = Guid.NewGuid().ToString(),
@@ -51,7 +51,6 @@ namespace SQL2MongoDB.Logic
                 products.Clear();
             }
         }
-
 
         public void PostMigration()
         {

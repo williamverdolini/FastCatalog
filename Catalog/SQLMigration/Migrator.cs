@@ -9,7 +9,7 @@ namespace SQLMigration
 {
     public class Migrator<T> where T : IDbClient, new()
     {
-        protected IDbClient dbClient;
+        private IDbClient dbClient;
         private bool IsInitialized = false;
         private int commitStep = 0;
 
@@ -19,9 +19,9 @@ namespace SQLMigration
             IsInitialized = true;
             commitStep = int.Parse(Resources.CommitStep);
             return this;
-        } 
+        }
 
-        public void Execute()
+        public Migrator<T> Execute()
         {
             if (IsInitialized)
             {
@@ -44,15 +44,22 @@ namespace SQLMigration
                             Console.WriteLine("#{0} - code: {1}", (++counter), dbProduct.Data.Code);
                         }
                     }
+                    cmd.Dispose();
                     dbClient.FlushProducts();
                 }
                 sw.Stop();
-                Console.WriteLine("Elapsed; {0}", sw.Elapsed);
+                Console.WriteLine("Elapsed: {0}", sw.Elapsed);
                 Console.WriteLine("Total Records inserted: {0}", counter);
-                Console.WriteLine("Insert Rate: {0} rec/sec", (counter / (sw.ElapsedMilliseconds / 1000)));
-
-                dbClient.PostMigration();                
+                Console.WriteLine("Insert Rate: {0} rec/sec", (counter / (sw.ElapsedMilliseconds / 1000)));                                
             }
+            return this;
+        }
+
+        public void PostMigration()
+        {
+            Console.WriteLine("Start executing post-migration logic");
+            dbClient.PostMigration();
+            Console.WriteLine("Post-migration logic completed.");
         }
     }
 }

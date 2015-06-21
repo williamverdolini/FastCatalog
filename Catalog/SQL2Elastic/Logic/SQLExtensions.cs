@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SQL2Elastic.Models;
+using SQLCommon.Logic;
 using SQLCommon.Models;
 
 namespace SQL2Elastic.Logic
@@ -9,13 +11,16 @@ namespace SQL2Elastic.Logic
         public static List<ProductAttribute> ToProductAttributes(this List<SQLAttribute> attributes)
         {
             List<ProductAttribute> attrs = new List<ProductAttribute>();
-            foreach (var a in attributes)
+            if (attributes != null)
             {
-                attrs.Add(new ProductAttribute
+                foreach (var a in attributes)
                 {
-                    Key = a.Key,
-                    Value = a.Value
-                });
+                    attrs.Add(new ProductAttribute
+                    {
+                        Key = a.Key,
+                        Value = a.Value
+                    });
+                }
             }
             return attrs;
         }

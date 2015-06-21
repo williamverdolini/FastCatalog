@@ -11,9 +11,12 @@ namespace SQLCommon.Logic
         public static List<string> ToStringList(this List<SQLSynonim> synonims)
         {
             List<string> strings = new List<string>();
-            foreach (var s in synonims)
+            if (synonims != null) 
             {
-                strings.Add(s.Code);
+                foreach (var s in synonims)
+                {
+                    strings.Add(s.Code);
+                }
             }
             return strings;
         }
