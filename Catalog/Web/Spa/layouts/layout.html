@@ -1,0 +1,32 @@
+﻿<!-- HEADER AREA -->
+<md-toolbar ng-controller="ToggleController" class="md-primary md-hue-2">
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings" ng-click="actions.openLeftNav()">
+            <md-icon md-svg-icon="navigation:menu"></md-icon>
+        </md-button>
+        <h3>
+            <span>Fast Catalog</span>
+        </h3>
+    </div>
+</md-toolbar>
+
+<!-- MENU SIDEBAR-->
+<div ng-controller="SideBarController" ng-include="'Spa/modules/nav/sidebar.html'"></div>
+
+<!--ng-controller="SideBarController"-->
+
+<!-- CONTENT AREA -->
+<div layout="row" ui-view></div>
+
+    <!--<md-content ui-view></md-content>-->
+
+    <!--</section>-->
+<!-- NAVIGATION AREA -->
+<!-- CONTENT AREA -->
+<!--<section layout="row">-->
+<!--style="height: 600px;"-->
+<!--<div ui-view></div>-->
+    <!--</section>-->
+
+<!--</md-content>-->
+

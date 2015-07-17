@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLMigration", "SQLMigratio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLCommon", "SQLCommon\SQLCommon.csproj", "{7707C32E-8A95-4561-A02E-552AA98721EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{5D4A83AD-736D-483B-9EA5-55F3614C0773}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7707C32E-8A95-4561-A02E-552AA98721EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7707C32E-8A95-4561-A02E-552AA98721EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7707C32E-8A95-4561-A02E-552AA98721EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D4A83AD-736D-483B-9EA5-55F3614C0773}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D4A83AD-736D-483B-9EA5-55F3614C0773}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D4A83AD-736D-483B-9EA5-55F3614C0773}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D4A83AD-736D-483B-9EA5-55F3614C0773}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
