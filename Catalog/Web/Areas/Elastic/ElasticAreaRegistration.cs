@@ -18,7 +18,7 @@ namespace Web.Areas.Elastic
 
             context.Routes.MapHttpRoute(
                 name: "Elastic_WebApiRoute",
-                routeTemplate: "Elastic/api/{controller}/{id}",
+                routeTemplate: "Elastic/api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
 

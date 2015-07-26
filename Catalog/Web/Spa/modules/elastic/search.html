@@ -1,1 +1,32 @@
-﻿<h1>Search</h1>
+﻿
+<div layout="column" flex style="position:relative">
+    <div>
+        <h2>Filters</h2>
+        <md-chips class="custom-chips" ng-model="local.chips" readonly="true">
+            <md-chip-template>
+                <span>
+                    <strong>{{$chip.value}}</strong>
+                    <em>({{$chip.key}})</em>
+                </span>
+            </md-chip-template>
+            <button md-chip-remove class="md-primary vegetablechip" ng-click="actions.toggle({Key:$chip.key,Value:$chip.value})">
+                <md-icon md-svg-icon="md-close"></md-icon>
+            </button>
+        </md-chips>
+    </div>
+    <div style="position:relative;overflow:hidden">
+        <md-content style="height:400px">
+            <section ng-repeat="attribute in local.aggregations">
+
+                <md-list layout="column">
+                    <md-subheader class="md-primary md-reverse">{{attribute.Key}}</md-subheader>
+                    <md-list-item ng-repeat="item in attribute.Values">
+                        <md-checkbox class="md-secondary" ng-checked="actions.isSelected(attribute.Key, item.Value)" ng-click="actions.toggle({Key:attribute.Key,Value:item.Value})"></md-checkbox>
+                        <p>{{ item.Value }} <span class="counter md-primary">{{item.Count}}</span></p>
+                    </md-list-item>
+                </md-list>
+            </section>
+        </md-content>
+    </div>
+
+</div>

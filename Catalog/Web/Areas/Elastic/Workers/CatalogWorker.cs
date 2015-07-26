@@ -20,6 +20,5 @@ namespace Web.Areas.Elastic.Workers
         {
             return await repository.Search(input);
         }
-
     }
 }

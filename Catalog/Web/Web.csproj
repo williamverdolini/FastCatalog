@@ -988,11 +988,15 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\restangular.js" />
     <Content Include="Scripts\restangular.min.js" />
+    <Content Include="Spa\css\catalog.css" />
     <Content Include="Spa\layouts\1col.html" />
     <Content Include="Spa\layouts\2col.html" />
     <Content Include="Spa\layouts\layout.html" />
     <Content Include="Spa\modules\elastic\grid.html" />
+    <Content Include="Spa\modules\elastic\grid.js" />
     <Content Include="Spa\modules\elastic\search.html" />
+    <Content Include="Spa\modules\elastic\search.js" />
+    <Content Include="Spa\modules\elastic\services.js" />
     <Content Include="Spa\modules\nav\intro.html" />
     <Content Include="Spa\modules\nav\sidebar.html" />
     <Content Include="Spa\modules\nav\sidebar.js" />

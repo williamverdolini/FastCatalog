@@ -1,28 +1,20 @@
-﻿<div layout-fill>
-    <h1>Grid</h1>
-    <md-list>
-        <md-list-item class="md-2-line" >
-            <!--<md-checkbox ></md-checkbox>-->
-            <div class="md-list-item-text">
-                <h3>Prodotto</h3>
-                <p>Suoi codici</p>
-            </div>
-            <div class="md-list-item-text">
-                1235
-            </div>
-        </md-list-item>
-    </md-list>
+﻿
+<md-content layout="column" layout-fill>
+    <div>
+        <h1>Product List</h1>
+    </div>
+    <md-content>
+        <md-list>
+            <md-list-item class="md-3-line" ng-repeat="product in local.products">
+                <!--<md-checkbox ></md-checkbox>-->
+                <div class="md-list-item-text">
+                    <h3>{{product.Description}}</h3>
+                    <p>code: {{product.Code}}</p>
+                    <p>price: € {{product.Price}}</p>
+                </div>
 
+            </md-list-item>
+        </md-list>
+    </md-content>
+</md-content>
 
-    <!--<md-grid-list md-cols="4" md-row-height="200px" ...>
-        <md-grid-tile>
-            ciao
-        </md-grid-tile>
-    </md-grid-list>-->
-
-    <!--<md-list>
-        <md-list-item>
-
-        </md-list-item>
-    </md-list>-->
-</div>

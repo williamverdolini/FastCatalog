@@ -10,23 +10,15 @@
     </div>
 </md-toolbar>
 
-<!-- MENU SIDEBAR-->
+<!-- MENU SIDEBAR -->
 <div ng-controller="SideBarController" ng-include="'Spa/modules/nav/sidebar.html'"></div>
 
-<!--ng-controller="SideBarController"-->
+<!-- LOADER -->
+<div layout="row" layout-align="space-around">
+    <md-progress-linear md-mode="indeterminate" ng-show="$root.$loading" class="md-accent loader"></md-progress-linear>
+</div>
 
 <!-- CONTENT AREA -->
-<div layout="row" ui-view></div>
+<md-content layout="row" ui-view></md-content>
 
-    <!--<md-content ui-view></md-content>-->
-
-    <!--</section>-->
-<!-- NAVIGATION AREA -->
-<!-- CONTENT AREA -->
-<!--<section layout="row">-->
-<!--style="height: 600px;"-->
-<!--<div ui-view></div>-->
-    <!--</section>-->
-
-<!--</md-content>-->
 

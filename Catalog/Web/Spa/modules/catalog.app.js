@@ -1,5 +1,6 @@
 ﻿/// <reference path="~/Scripts/angular.js" />
 /// <reference path="~/Scripts/angular-material.js" />
+/// <reference path="~/Scripts/restangular.js" />
 
 angular.module('catalog.theme', ['ngMaterial'])
     .config(function ($mdThemingProvider, $mdIconProvider) {
@@ -27,7 +28,7 @@ angular.module('catalog.theme', ['ngMaterial'])
                 .iconSet("nosql", "/Content/angular-material-icons/nosql.svg");
     });
 
-angular.module('catalog', ['ui.router','catalog.theme'])
+angular.module('catalog', ['ui.router', 'catalog.theme', 'restangular'])
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
             //Default layout (Abstract States)
@@ -60,67 +61,54 @@ angular.module('catalog', ['ui.router','catalog.theme'])
                 templateUrl: 'Spa/modules/nav/intro.html'
             })
             .state('elastic', {
-                url: 'elastic',
+                url: 'elastic?:attribute',
+                params: { attribute: { array: true } },
                 parent: 'layout.2col',
                 onEnter: function () {
                     console.log("Entering Elastic Page");
                 },
+                resolve: {
+                    apiData: ['CatalogService', '$stateParams',
+                        function (CatalogService, $stateParams) {
+                            return CatalogService.Search($stateParams.attribute);
+                        }],
+                    selectedValues: ['CatalogService', '$stateParams',
+                        function (CatalogService, $stateParams) {
+                            return CatalogService.SelectedValues($stateParams.attribute);
+                        }]
+                },
                 views: {
                     'search': {
-                        templateUrl: 'Spa/modules/elastic/search.html'
+                        templateUrl: 'Spa/modules/elastic/search.html',
+                        controller: 'ElasticSearchController'
                     },
                     'grid': {
-                        templateUrl: 'Spa/modules/elastic/grid.html'
+                        templateUrl: 'Spa/modules/elastic/grid.html',
+                        controller: 'ElasticGridController'
                     }
                 }
-            })
-            //.state('intro', {
-            //    url: 'intro',
-            //    parent: 'layout.2cl',
-            //    onEnter: function () {
-            //        console.log("Entering Intro Page");
-            //    },
-            //    views: {
-            //        'sidebar@layout.2cl': {
-            //            templateUrl: 'Spa/modules/nav/sidebar.html',
-            //            controller: 'SideBarCtrl'
-            //        },
-            //        '@layout.2cl': {
-            //            templateUrl: 'Spa/modules/nav/intro.html'
-            //        }
-            //    }
-            //})
-            //.state('elastic', {
-            //    url: 'elastic',
-            //    parent: 'layout.2side',
-            //    onEnter: function () {
-            //        console.log("Entering Elastic Page");
-            //    },
-            //    views: {
-            //        'sidebar@layout.2cl': {
-            //            templateUrl: 'Spa/modules/nav/sidebar.html',
-            //            controller: 'SideBarCtrl'
-            //        },
-            //        'search': {
-            //            templateUrl: 'Spa/modules/elastic/search.html'
-            //        },
-            //        'grid': {
-            //            templateUrl: 'Spa/modules/elastic/grid.html'
-            //        }
-            //    }
-            //})
-        ;
+            });
 
         // For any unmatched url, redirect to HomePage
         $urlRouterProvider.otherwise('/intro');
+    })
+    .run(function ($rootScope, Restangular) {
+        // Restangular general configurations
+        Restangular.setBaseUrl('Elastic/api');
+        Restangular.addRequestInterceptor(function (element) {
+            $rootScope.$loading = true;
+            return element;
+        });
+
+        Restangular.addResponseInterceptor(function (data) {
+            $rootScope.$loading = false;
+            return data;
+        });
     });
 
 angular.module('catalog')
-    .controller('ToggleController',
-    [
-        '$scope',
-        '$rootScope',
-        '$mdSidenav',
+    .controller('ToggleController', [
+        '$scope', '$rootScope', '$mdSidenav',
         function ($scope, $rootScope, $mdSidenav) {
             $scope.actions = {
                 openLeftNav: function () {
