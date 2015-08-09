@@ -1,5 +1,5 @@
 ﻿angular.module('catalog')
-    .controller('ElasticSearchController', [
+    .controller('SearchController', [
         '$scope', 'selectedValues', 'apiData','$state',
         function ($scope, selectedValues, apiData, $state) {
             /// private methods
@@ -67,7 +67,7 @@
                     }
                     var attr = prepareSearchAttributes(item, $scope.local.selected);
 
-                    $state.go('elastic', { attribute: attr }, { reload: true, location: true });
+                    $state.go($state.current.name, { attribute: attr }, { reload: true, location: true });
                 }
             }
         }

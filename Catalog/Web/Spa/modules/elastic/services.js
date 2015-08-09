@@ -1,5 +1,5 @@
 ﻿angular.module('catalog')
-    .factory('CatalogService', [
+    .factory('ElasticCatalogService', [
         'ElasticAPI',
         function (ElasticAPI) {
             var parseParams = function (param) {

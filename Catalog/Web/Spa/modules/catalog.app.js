@@ -68,23 +68,23 @@ angular.module('catalog', ['ui.router', 'catalog.theme', 'restangular'])
                     console.log("Entering Elastic Page");
                 },
                 resolve: {
-                    apiData: ['CatalogService', '$stateParams',
-                        function (CatalogService, $stateParams) {
-                            return CatalogService.Search($stateParams.attribute);
+                    apiData: ['ElasticCatalogService', '$stateParams',
+                        function (ElasticCatalogService, $stateParams) {
+                            return ElasticCatalogService.Search($stateParams.attribute);
                         }],
-                    selectedValues: ['CatalogService', '$stateParams',
-                        function (CatalogService, $stateParams) {
-                            return CatalogService.SelectedValues($stateParams.attribute);
+                    selectedValues: ['ElasticCatalogService', '$stateParams',
+                        function (ElasticCatalogService, $stateParams) {
+                            return ElasticCatalogService.SelectedValues($stateParams.attribute);
                         }]
                 },
                 views: {
                     'search': {
-                        templateUrl: 'Spa/modules/elastic/search.html',
-                        controller: 'ElasticSearchController'
+                        templateUrl: 'Spa/modules/catalog/search.html',
+                        controller: 'SearchController'
                     },
                     'grid': {
-                        templateUrl: 'Spa/modules/elastic/grid.html',
-                        controller: 'ElasticGridController'
+                        templateUrl: 'Spa/modules/catalog/grid.html',
+                        controller: 'GridController'
                     }
                 }
             })
@@ -107,12 +107,12 @@ angular.module('catalog', ['ui.router', 'catalog.theme', 'restangular'])
                 },
                 views: {
                     'search': {
-                        templateUrl: 'Spa/modules/elastic/search.html',
-                        controller: 'MongoSearchController'
+                        templateUrl: 'Spa/modules/catalog/search.html',
+                        controller: 'SearchController'
                     },
                     'grid': {
-                        templateUrl: 'Spa/modules/elastic/grid.html',
-                        controller: 'MongoGridController'
+                        templateUrl: 'Spa/modules/catalog/grid.html',
+                        controller: 'GridController'
                     }
                 }
             });

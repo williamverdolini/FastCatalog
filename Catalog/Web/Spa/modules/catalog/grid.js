@@ -1,5 +1,5 @@
 ﻿angular.module('catalog')
-    .controller('ElasticGridController', [
+    .controller('GridController', [
         '$scope', 'apiData',
         function ($scope, apiData) {
             $scope.local = {
