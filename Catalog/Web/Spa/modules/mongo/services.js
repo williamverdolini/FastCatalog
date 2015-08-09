@@ -1,7 +1,7 @@
 ﻿angular.module('catalog')
-    .factory('CatalogService', [
-        'ElasticAPI',
-        function (ElasticAPI) {
+    .factory('MongoCatalogService', [
+        'MongoAPI',
+        function (MongoAPI) {
             var parseParams = function (param) {
                 var newParams = []
                 if (angular.isDefined(param)) {
@@ -17,7 +17,7 @@
                 return newParams;
             }
 
-            var service = ElasticAPI.service('Catalog/Search');
+            var service = MongoAPI.service('Catalog/Search');
 
             return {
                 Search: function (input) {

@@ -19,7 +19,8 @@ namespace Web
                 .Install(
                         new ControllersInstaller(),
                         new MappersInstaller(),
-                        new ElasticInstaller()
+                        new ElasticInstaller(),
+                        new MongoInstaller()
                         );
         }
 

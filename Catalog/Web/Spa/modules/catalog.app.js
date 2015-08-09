@@ -87,14 +87,54 @@ angular.module('catalog', ['ui.router', 'catalog.theme', 'restangular'])
                         controller: 'ElasticGridController'
                     }
                 }
+            })
+            .state('mongo', {
+                url: 'mongo?:attribute',
+                params: { attribute: { array: true } },
+                parent: 'layout.2col',
+                onEnter: function () {
+                    console.log("Entering MongoDB Page");
+                },
+                resolve: {
+                    apiData: ['MongoCatalogService', '$stateParams',
+                        function (MongoCatalogService, $stateParams) {
+                            return MongoCatalogService.Search($stateParams.attribute);
+                        }],
+                    selectedValues: ['MongoCatalogService', '$stateParams',
+                        function (MongoCatalogService, $stateParams) {
+                            return MongoCatalogService.SelectedValues($stateParams.attribute);
+                        }]
+                },
+                views: {
+                    'search': {
+                        templateUrl: 'Spa/modules/elastic/search.html',
+                        controller: 'MongoSearchController'
+                    },
+                    'grid': {
+                        templateUrl: 'Spa/modules/elastic/grid.html',
+                        controller: 'MongoGridController'
+                    }
+                }
             });
 
         // For any unmatched url, redirect to HomePage
         $urlRouterProvider.otherwise('/intro');
     })
+    //Elastic Restangular Service
+    .factory('ElasticAPI', [ 'Restangular', function (Restangular) {
+        return Restangular.withConfig(function (RestangularConfigurer) {
+            RestangularConfigurer.setBaseUrl('Elastic/api');
+        });
+    }])
+    //Second Restangular Service
+    .factory('MongoAPI', [ 'Restangular', function (Restangular) {
+        return Restangular.withConfig(function (RestangularConfigurer) {
+            RestangularConfigurer.setBaseUrl('Mongo/api');
+        });
+    }])
     .run(function ($rootScope, Restangular) {
         // Restangular general configurations
-        Restangular.setBaseUrl('Elastic/api');
+        //Restangular.setBaseUrl('Elastic/api');
         Restangular.addRequestInterceptor(function (element) {
             $rootScope.$loading = true;
             return element;
@@ -104,7 +144,7 @@ angular.module('catalog', ['ui.router', 'catalog.theme', 'restangular'])
             $rootScope.$loading = false;
             return data;
         });
-    });
+    })
 
 angular.module('catalog')
     .controller('ToggleController', [

@@ -1,15 +1,15 @@
 ﻿using System.Web.Mvc;
 using System.Web.Http;
 
-namespace Web.Areas.Elastic
+namespace Web.Areas.Mongo
 {
-    public class ElasticAreaRegistration : AreaRegistration 
+    public class MongoAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {
             get 
             {
-                return "Elastic";
+                return "Mongo";
             }
         }
 
@@ -17,14 +17,14 @@ namespace Web.Areas.Elastic
         {
             // WebApi Routes Mapping
             context.Routes.MapHttpRoute(
-                name: "Elastic_WebApiRoute",
-                routeTemplate: "Elastic/api/{controller}/{action}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                name: "Mongo_WebApiRoute",
+                routeTemplate: "Mongo/api/Catalog/{action}/{id}",
+                defaults: new { controller = "MongoCatalog", id = RouteParameter.Optional }
             );
 
             context.MapRoute(
-                "Elastic_default",
-                "Elastic/{controller}/{action}/{id}",
+                "Mongo_default",
+                "Mongo/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

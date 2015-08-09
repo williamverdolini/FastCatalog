@@ -58,6 +58,15 @@
       <HintPath>..\packages\Elasticsearch.Net.1.5.0\lib\net45\Elasticsearch.Net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\MongoDB.Bson.2.0.0\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\MongoDB.Driver.2.0.0\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.0.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Nest">
       <HintPath>..\packages\NEST.1.5.0\lib\net45\Nest.dll</HintPath>
     </Reference>
@@ -147,6 +156,14 @@
     <Compile Include="Areas\Elastic\Services\ICatalogRepository.cs" />
     <Compile Include="Areas\Elastic\Workers\CatalogWorker.cs" />
     <Compile Include="Areas\Elastic\Workers\ICatalogWorker.cs" />
+    <Compile Include="Areas\Mongo\Controllers\MongoCatalogController.cs" />
+    <Compile Include="Areas\Mongo\Mappers\SearchMapperProfile.cs" />
+    <Compile Include="Areas\Mongo\Models\MongoProduct.cs" />
+    <Compile Include="Areas\Mongo\MongoAreaRegistration.cs" />
+    <Compile Include="Areas\Mongo\Services\CatalogRepository.cs" />
+    <Compile Include="Areas\Mongo\Services\ICatalogRepository.cs" />
+    <Compile Include="Areas\Mongo\Workers\CatalogWorker.cs" />
+    <Compile Include="Areas\Mongo\Workers\ICatalogWorker.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -154,6 +171,7 @@
     <Compile Include="Infrastructure\Injection\Installers\ControllersInstaller.cs" />
     <Compile Include="Infrastructure\Injection\Installers\ElasticInstaller.cs" />
     <Compile Include="Infrastructure\Injection\Installers\MappersInstaller.cs" />
+    <Compile Include="Infrastructure\Injection\Installers\MongoInstaller.cs" />
     <Compile Include="Infrastructure\Injection\WebAPI\WindsorCompositionRoot.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Search\FilteredProductAttribute.cs" />
@@ -997,6 +1015,9 @@
     <Content Include="Spa\modules\elastic\search.html" />
     <Content Include="Spa\modules\elastic\search.js" />
     <Content Include="Spa\modules\elastic\services.js" />
+    <Content Include="Spa\modules\mongo\grid.js" />
+    <Content Include="Spa\modules\mongo\search.js" />
+    <Content Include="Spa\modules\mongo\services.js" />
     <Content Include="Spa\modules\nav\intro.html" />
     <Content Include="Spa\modules\nav\sidebar.html" />
     <Content Include="Spa\modules\nav\sidebar.js" />
