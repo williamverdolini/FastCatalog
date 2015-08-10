@@ -120,18 +120,6 @@ angular.module('catalog', ['ui.router', 'catalog.theme', 'restangular'])
         // For any unmatched url, redirect to HomePage
         $urlRouterProvider.otherwise('/intro');
     })
-    //Elastic Restangular Service
-    .factory('ElasticAPI', [ 'Restangular', function (Restangular) {
-        return Restangular.withConfig(function (RestangularConfigurer) {
-            RestangularConfigurer.setBaseUrl('Elastic/api');
-        });
-    }])
-    //Mongo Restangular Service
-    .factory('MongoAPI', [ 'Restangular', function (Restangular) {
-        return Restangular.withConfig(function (RestangularConfigurer) {
-            RestangularConfigurer.setBaseUrl('Mongo/api');
-        });
-    }])
     .run(function ($rootScope, Restangular) {
         // Restangular general configurations
         Restangular.addRequestInterceptor(function (element) {
