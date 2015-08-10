@@ -126,7 +126,7 @@ angular.module('catalog', ['ui.router', 'catalog.theme', 'restangular'])
             RestangularConfigurer.setBaseUrl('Elastic/api');
         });
     }])
-    //Second Restangular Service
+    //Mongo Restangular Service
     .factory('MongoAPI', [ 'Restangular', function (Restangular) {
         return Restangular.withConfig(function (RestangularConfigurer) {
             RestangularConfigurer.setBaseUrl('Mongo/api');
@@ -134,7 +134,6 @@ angular.module('catalog', ['ui.router', 'catalog.theme', 'restangular'])
     }])
     .run(function ($rootScope, Restangular) {
         // Restangular general configurations
-        //Restangular.setBaseUrl('Elastic/api');
         Restangular.addRequestInterceptor(function (element) {
             $rootScope.$loading = true;
             return element;

@@ -132,7 +132,7 @@ namespace Web.Areas.Elastic.Services
         }
         #endregion
 
-        #region Mappings (To-DO: usare AutoMapper, o ExpressMapper)
+        #region Mappings
         private IList<ProductAttributeAggregation> MapToProductAttributeAggregation(ISearchResponse<Product> elasticResponse)
         {
             var bucket = elasticResponse.Aggs.Children(MULTI_PROPERTIES_QUERY);
