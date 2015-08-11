@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Web.Areas.Mongo.Models
@@ -6,7 +7,7 @@ namespace Web.Areas.Mongo.Models
     public class MongoProduct
     {
         [BsonId]
-        public string Id { get; set; }
+        public BsonObjectId Id { get; set; }
         [BsonElement("Code")]
         public string Code { get; set; }
         [BsonElement("Description")]

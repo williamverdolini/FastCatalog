@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using MongoDB.Bson;
+using Web.Areas.Mongo.Models;
 using Web.Models;
 using Web.Models.Search;
 
@@ -12,6 +13,14 @@ namespace Web.Areas.Mongo.Mappers
     {
         protected override void Configure()
         {
+            // Easier mapping using Typed Documents than using BSonDocuments
+            CreateMap<MongoProduct, Product>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => AsGuid(src.Id.AsObjectId)));
+            CreateMap<MongoProductAttribute, ProductAttribute>();
+
+            // No more used.
+            // Kept to see how to map BsonDocuments.
+            // usage mapper.Map<IList<BsonDocument>, IList<Product>>(database.GetCollection<BsonDocument>(MONGO_COLLECTION))
             CreateMap<BsonDocument, ProductAttributeAggregation>()
                 .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src["_id"].AsString))
                 .ForMember(dest => dest.Values, opt => opt.ResolveUsing<ProductAttributesResolver>());

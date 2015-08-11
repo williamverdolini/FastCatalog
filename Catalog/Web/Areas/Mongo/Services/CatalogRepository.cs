@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Web.Areas.Mongo.Models;
 using Web.Infrastructure.Common;
 using Web.Models;
 using Web.Models.Search;
@@ -100,17 +101,30 @@ namespace Web.Areas.Mongo.Services
                     };
             return filter;
         }
+        //private async Task<SearchResult> SearchDocuments(SearchInput input)
+        //{
+        //    var collection = database.GetCollection<BsonDocument>(MONGO_COLLECTION);
+        //    var cursor = collection.Find(MatchDocuments(input));
+        //    long count = await cursor.CountAsync();
+        //    var result = await cursor.Skip(0).Limit(10).ToListAsync();
+
+        //    return new SearchResult 
+        //    {
+        //        Count = count,
+        //        Results = mapper.Map<IList<BsonDocument>, IList<Product>>(result)
+        //    };
+        //}
         private async Task<SearchResult> SearchDocuments(SearchInput input)
         {
-            var collection = database.GetCollection<BsonDocument>(MONGO_COLLECTION);
+            var collection = database.GetCollection<MongoProduct>(MONGO_COLLECTION);
             var cursor = collection.Find(MatchDocuments(input));
             long count = await cursor.CountAsync();
             var result = await cursor.Skip(0).Limit(10).ToListAsync();
 
-            return new SearchResult 
+            return new SearchResult
             {
                 Count = count,
-                Results = mapper.Map<IList<BsonDocument>, IList<Product>>(result)
+                Results = mapper.Map<IList<MongoProduct>, IList<Product>>(result)
             };
         }
         private async Task<IList<BsonDocument>> SearchAggregations(SearchInput input)
