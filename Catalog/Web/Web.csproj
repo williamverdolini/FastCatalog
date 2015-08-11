@@ -133,10 +133,6 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="WebGrease">
-      <Private>True</Private>
-      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
-    </Reference>
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
@@ -150,14 +146,14 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Elastic\Controllers\CatalogController.cs" />
     <Compile Include="Areas\Elastic\ElasticAreaRegistration.cs" />
-    <Compile Include="Areas\Elastic\Mappers\SearchInputMapperProfile.cs" />
+    <Compile Include="Areas\Elastic\Mappers\SearchResponseMapperProfile.cs" />
     <Compile Include="Areas\Elastic\Models\ESProduct.cs" />
     <Compile Include="Areas\Elastic\Services\CatalogRepository.cs" />
     <Compile Include="Areas\Elastic\Services\ICatalogRepository.cs" />
     <Compile Include="Areas\Elastic\Workers\CatalogWorker.cs" />
     <Compile Include="Areas\Elastic\Workers\ICatalogWorker.cs" />
     <Compile Include="Areas\Mongo\Controllers\MongoCatalogController.cs" />
-    <Compile Include="Areas\Mongo\Mappers\SearchMapperProfile.cs" />
+    <Compile Include="Areas\Mongo\Mappers\SearchResponseMapperProfile.cs" />
     <Compile Include="Areas\Mongo\Models\MongoProduct.cs" />
     <Compile Include="Areas\Mongo\MongoAreaRegistration.cs" />
     <Compile Include="Areas\Mongo\Services\CatalogRepository.cs" />
@@ -173,6 +169,7 @@
     <Compile Include="Infrastructure\Injection\Installers\MappersInstaller.cs" />
     <Compile Include="Infrastructure\Injection\Installers\MongoInstaller.cs" />
     <Compile Include="Infrastructure\Injection\WebAPI\WindsorCompositionRoot.cs" />
+    <Compile Include="Mappers\SearchInputMapperProfile.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Search\FilteredProductAttribute.cs" />
     <Compile Include="Models\Search\ProductAttributeAggregation.cs" />

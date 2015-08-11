@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using AutoMapper;
 using MongoDB.Bson;
 using Web.Models;
@@ -9,11 +8,10 @@ using Web.Models.Search;
 
 namespace Web.Areas.Mongo.Mappers
 {
-    public class SearchMapperProfile : Profile
+    public class SearchResponseMapperProfile : Profile
     {
         protected override void Configure()
         {
-            //CreateMap<IList<BsonDocument>, IList<ProductAttributeAggregation>>();
             CreateMap<BsonDocument, ProductAttributeAggregation>()
                 .ForMember(dest => dest.Key, opt => opt.MapFrom(src => src["_id"].AsString))
                 .ForMember(dest => dest.Values, opt => opt.ResolveUsing<ProductAttributesResolver>());
@@ -45,8 +43,7 @@ namespace Web.Areas.Mongo.Mappers
                 var dbAttributes = source["Properties"].AsBsonArray;
 
                 foreach (var val in dbAttributes)
-                {
-                    
+                {                    
                     attributes.Add(new ValueCount
                     {
                         Value = val.AsBsonDocument["Value"].AsString,

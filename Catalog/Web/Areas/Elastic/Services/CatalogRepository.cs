@@ -133,38 +133,11 @@ namespace Web.Areas.Elastic.Services
         #endregion
 
         #region Mappings
-        private IList<ProductAttributeAggregation> MapToProductAttributeAggregation(ISearchResponse<Product> elasticResponse)
-        {
-            var bucket = elasticResponse.Aggs.Children(MULTI_PROPERTIES_QUERY);
-
-            IList<ProductAttributeAggregation> aggs = new List<ProductAttributeAggregation>();
-            foreach (var item in bucket.Terms(ALL_PROPERTIES_AGG).Items)
-            {
-                IList<ValueCount> values = new List<ValueCount>();
-
-                foreach (var val in item.Terms(ALL_VALUES_PER_PROPERTY).Items)
-                {
-                    values.Add(new ValueCount
-                    {
-                        Value = val.Key,
-                        Count = val.DocCount
-                    });
-                }
-
-                aggs.Add(new ProductAttributeAggregation
-                {
-                    Key = item.Key,
-                    Values = values
-                });
-            }
-
-            return aggs;
-        }
         private SearchResult MapToSearchResult(ISearchResponse<Product> elasticResponse)
         {
             return new SearchResult
             {
-                Aggregations = MapToProductAttributeAggregation(elasticResponse),
+                Aggregations = mapper.Map<IList<ProductAttributeAggregation>>(elasticResponse),
                 Results = elasticResponse.Documents.ToList(),
                 Count = elasticResponse.Total
             };

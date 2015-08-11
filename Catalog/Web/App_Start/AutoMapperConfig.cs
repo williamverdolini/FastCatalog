@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using AutoMapper;
-using Web.Areas.Elastic.Mappers;
+using Web.Mappers;
 
 namespace Web
 {

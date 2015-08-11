@@ -21,10 +21,6 @@ namespace Web.Infrastructure.Injection.Installers
             container.Register(Classes.FromThisAssembly()
                                 .BasedOn<IHttpController>()
                                 .LifestyleTransient());
-
-            // Register Worker Services
-            //container.Register(Component.For<ToDoWorker>().LifeStyle.Transient);
         }
-
     }
 }

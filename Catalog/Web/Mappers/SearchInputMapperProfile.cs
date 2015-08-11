@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Web.Models.Search;
 using Web.Models.Views;
-using System.Linq;
 
-namespace Web.Areas.Elastic.Mappers
+namespace Web.Mappers
 {
     public class SearchInputMapperProfile : Profile
     {
@@ -44,4 +44,5 @@ namespace Web.Areas.Elastic.Mappers
             return attributes;
         }
     }
+
 }
